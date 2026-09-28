@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mindy & Nix — o poveste fantasy de Catrinel von Caitanovici. Descarcă PDF-ul integral gratuit!">
+<meta property="og:title" content="Mindy & Nix — O poveste fantasy">
+<meta property="og:description" content="O vrăjitoare pe cale de dispariție. O șoricică loială. O insulă uitată de lume.">
+<meta property="og:type" content="book">
+<meta property="og:image" content="mindy_nix_print.jpg">
+<title>Mindy & Nix — de Catrinel von Caitanovici</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Georgia, 'Times New Roman', serif; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
+    body { background: #0a0612; color: #e8e3f5; line-height: 1.7; overflow-x: hidden; }
+
+    /* ===== AMBIENT ===== */
+    .moon-glow {
+        position: fixed; top: -150px; right: -150px;
+        width: 600px; height: 600px;
+        background: radial-gradient(circle, rgba(168, 130, 255, 0.15), transparent 70%);
+        border-radius: 50%; pointer-events: none; z-index: 0;
+    }
+    .stars-container {
+        position: fixed; inset: 0; z-index: 0;
+        pointer-events: none; overflow: hidden;
+    }
+    .star {
+        position: absolute; background: #fff; border-radius: 50%;
+        animation: twinkle 3s ease-in-out infinite;
+    }
+    @keyframes twinkle {
+        0%, 100% { opacity: 0.2; }
+        50% { opacity: 1; }
+    }
+
+    /* ===== NAV ===== */
+    nav {
+        position: fixed; top: 0; left: 0; right: 0;
+        background: rgba(10, 6, 18, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(168, 130, 255, 0.15);
+        z-index: 100; padding: 14px 20px;
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo {
+        font-size: 17px; font-weight: 700;
+        color: #c9a7ff; font-style: italic;
+        letter-spacing: 0.5px;
+    }
+    .nav-links { display: flex; gap: 22px; align-items: center; }
+    .nav-links a {
+        color: rgba(232, 227, 245, 0.7);
+        text-decoration: none; font-size: 14px;
+        font-family: -apple-system, sans-serif;
+        transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #c9a7ff; }
+    .nav-cta {
+        background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+        color: #fff !important;
+        padding: 8px 18px; border-radius: 20px;
+        font-size: 13px !important; font-weight: 600 !important;
+    }
+    @media (max-width: 700px) {
+        .nav-links a:not(.nav-cta) { display: none; }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+        min-height: 100vh;
+        display: flex; flex-direction: column;
+        justify-content: center; align-items: center;
+        text-align: center;
+        padding: 100px 24px 60px;
+        position: relative; z-index: 1;
+    }
+    .hero-cover {
+        width: 220px; max-width: 60vw; height: auto;
+        margin-bottom: 32px;
+        box-shadow: 0 30px 80px rgba(168, 130, 255, 0.4),
+                    0 0 0 1px rgba(201, 167, 255, 0.2);
+        border-radius: 8px;
+        transform: rotate(-2deg);
+        transition: transform 0.4s ease;
+        display: block;
+    }
+    .hero-cover:hover {
+        transform: rotate(0deg) scale(1.03);
+    }
+    .hero-cover.hidden { display: none; }
+    .hero-eyebrow {
+        font-size: 12px; letter-spacing: 4px;
+        text-transform: uppercase; color: #c9a7ff;
+        margin-bottom: 16px;
+        font-family: -apple-system, sans-serif; font-weight: 600;
+    }
+    .hero h1 {
+        font-size: clamp(44px, 10vw, 88px);
+        font-weight: 400; letter-spacing: -2px;
+        line-height: 0.95; margin-bottom: 20px;
+        font-style: italic;
+        background: linear-gradient(135deg, #e8e3f5 30%, #c9a7ff 70%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .hero-tagline {
+        font-size: clamp(15px, 2.5vw, 19px);
+        color: rgba(232, 227, 245, 0.7);
+        max-width: 560px; margin-bottom: 24px;
+        font-style: italic; line-height: 1.5;
+    }
+    .hero-author {
+        font-size: 12px; letter-spacing: 3px;
+        text-transform: uppercase; color: #c9a7ff;
+        margin-bottom: 36px;
+        font-family: -apple-system, sans-serif; font-weight: 600;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-row {
+        display: flex; gap: 12px;
+        flex-wrap: wrap; justify-content: center;
+        max-width: 700px;
+    }
+    .btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 15px 30px; border-radius: 30px;
+        font-size: 15px; font-weight: 600;
+        text-decoration: none; cursor: pointer;
+        border: none; transition: all 0.25s;
+        font-family: -apple-system, sans-serif;
+        text-align: center; justify-content: center;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary {
+        background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+        color: #fff;
+        box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+    }
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 40px rgba(139, 92, 246, 0.55);
+    }
+    .btn-secondary {
+        background: rgba(168, 130, 255, 0.1);
+        color: #c9a7ff;
+        border: 1px solid rgba(168, 130, 255, 0.3);
+    }
+    .btn-secondary:hover { background: rgba(168, 130, 255, 0.2); }
+    .btn-youtube {
+        background: #ff0000; color: #fff;
+        box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+    }
+    .btn-youtube:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 40px rgba(255, 0, 0, 0.45);
+    }
+    .btn-patreon {
+        background: #f96854; color: #fff;
+        box-shadow: 0 10px 30px rgba(249, 104, 84, 0.3);
+    }
+    .btn-patreon:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 40px rgba(249, 104, 84, 0.45);
+    }
+
+    /* ===== DIVIDER ===== */
+    .divider {
+        text-align: center; padding: 40px 0;
+        color: rgba(201, 167, 255, 0.4);
+        font-size: 24px; letter-spacing: 12px;
+        position: relative; z-index: 1;
+    }
+
+    /* ===== SECTIONS ===== */
+    .section {
+        padding: 70px 24px; max-width: 760px;
+        margin: 0 auto; position: relative; z-index: 1;
+    }
+    .section-tag {
+        text-align: center;
+        font-size: 11px; letter-spacing: 4px;
+        text-transform: uppercase; color: #c9a7ff;
+        margin-bottom: 16px;
+        font-family: -apple-system, sans-serif; font-weight: 700;
+    }
+    .section-title {
+        text-align: center;
+        font-size: clamp(26px, 5vw, 40px);
+        font-weight: 400; font-style: italic;
+        letter-spacing: -0.5px; margin-bottom: 40px;
+        line-height: 1.15;
+    }
+
+    /* ===== ABOUT ===== */
+    .about-text {
+        font-size: 17px; line-height: 1.85;
+        color: rgba(232, 227, 245, 0.85);
+        text-align: center; max-width: 640px;
+        margin: 0 auto;
+    }
+    .about-text p { margin-bottom: 20px; }
+    .about-text .drop-cap::first-letter {
+        font-size: 62px; font-weight: 700;
+        float: left; line-height: 0.85;
+        padding: 8px 12px 0 0;
+        color: #c9a7ff; font-style: italic;
+    }
+
+    /* ===== PDF DOWNLOAD ===== */
+    .download-card {
+        background: linear-gradient(160deg,
+            rgba(168, 130, 255, 0.12),
+            rgba(139, 92, 246, 0.05));
+        border: 1px solid rgba(168, 130, 255, 0.3);
+        border-radius: 24px;
+        padding: 40px 32px;
+        text-align: center;
+        max-width: 600px; margin: 0 auto;
+        box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
+    }
+    .download-card .download-icon {
+        font-size: 56px; margin-bottom: 16px;
+        display: block;
+    }
+    .download-card h3 {
+        font-size: 24px; font-weight: 400;
+        font-style: italic; margin-bottom: 10px;
+    }
+    .download-card p {
+        font-size: 15px;
+        color: rgba(232, 227, 245, 0.7);
+        margin-bottom: 24px; line-height: 1.6;
+    }
+    .download-card .btn-primary {
+        font-size: 17px; padding: 18px 36px;
+    }
+    .download-card .file-info {
+        font-size: 12px;
+        color: rgba(232, 227, 245, 0.5);
+        margin-top: 16px;
+        font-family: -apple-system, sans-serif;
+    }
+
+    /* ===== CHARACTERS ===== */
+    .characters-grid {
+        display: grid; grid-template-columns: 1fr 1fr;
+        gap: 20px; max-width: 700px; margin: 0 auto;
+    }
+    @media (max-width: 600px) {
+        .characters-grid { grid-template-columns: 1fr; }
+    }
+    .character-card {
+        background: rgba(168, 130, 255, 0.05);
+        border: 1px solid rgba(168, 130, 255, 0.15);
+        border-radius: 20px;
+        padding: 28px 22px; text-align: center;
+        transition: all 0.3s;
+    }
+    .character-card:hover {
+        border-color: rgba(168, 130, 255, 0.4);
+        background: rgba(168, 130, 255, 0.1);
+        transform: translateY(-4px);
+    }
+    .character-icon {
+        font-size: 44px; margin-bottom: 14px; display: block;
+    }
+    .character-name {
+        font-size: 22px; font-style: italic;
+        margin-bottom: 6px; color: #c9a7ff;
+    }
+    .character-role {
+        font-size: 11px; letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(232, 227, 245, 0.5);
+        margin-bottom: 12px;
+        font-family: -apple-system, sans-serif;
+    }
+    .character-desc {
+        font-size: 14px; line-height: 1.6;
+        color: rgba(232, 227, 245, 0.7);
+        font-style: italic;
+    }
+
+    /* ===== EXCERPT ===== */
+    .excerpt-box {
+        background: linear-gradient(160deg,
+            rgba(168, 130, 255, 0.08),
+            rgba(139, 92, 246, 0.03));
+        border-left: 3px solid #a78bfa;
+        border-radius: 0 16px 16px 0;
+        padding: 32px 28px;
+        max-width: 640px; margin: 0 auto;
+        position: relative;
+    }
+    .excerpt-box::before {
+        content: '"';
+        position: absolute; top: -10px; left: 16px;
+        font-size: 80px; color: rgba(201, 167, 255, 0.2);
+        font-family: Georgia, serif; line-height: 1;
+    }
+    .excerpt-box p {
+        font-size: 17px; line-height: 1.8;
+        font-style: italic;
+        color: rgba(232, 227, 245, 0.9);
+        position: relative; z-index: 1;
+    }
+    .excerpt-author {
+        margin-top: 20px; font-size: 13px;
+        font-style: normal; color: #c9a7ff;
+        letter-spacing: 2px; text-transform: uppercase;
+        font-family: -apple-system, sans-serif;
+    }
+
+    /* ===== LINKS ===== */
+    .links-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px; max-width: 700px; margin: 0 auto;
+    }
+    .link-card {
+        display: flex; align-items: center; gap: 16px;
+        background: rgba(168, 130, 255, 0.05);
+        border: 1px solid rgba(168, 130, 255, 0.15);
+        border-radius: 18px;
+        padding: 22px; text-decoration: none;
+        color: inherit; transition: all 0.25s;
+    }
+    .link-card:hover {
+        border-color: rgba(168, 130, 255, 0.4);
+        background: rgba(168, 130, 255, 0.1);
+        transform: translateY(-3px);
+    }
+    .link-card .icon { font-size: 36px; flex-shrink: 0; }
+    .link-card .info { flex: 1; min-width: 0; }
+    .link-card .name {
+        font-size: 16px; font-weight: 600;
+        margin-bottom: 4px; color: #c9a7ff;
+        font-family: -apple-system, sans-serif;
+    }
+    .link-card .desc {
+        font-size: 13px;
+        color: rgba(232, 227, 245, 0.6);
+        line-height: 1.4;
+        font-family: -apple-system, sans-serif;
+    }
+    .link-card .arrow {
+        font-size: 20px; color: #c9a7ff;
+        opacity: 0.5; transition: opacity 0.2s;
+    }
+    .link-card:hover .arrow { opacity: 1; }
+
+    /* ===== AUTHOR ===== */
+    .author-card {
+        display: flex; align-items: center; gap: 24px;
+        max-width: 600px; margin: 0 auto;
+        background: rgba(168, 130, 255, 0.05);
+        border: 1px solid rgba(168, 130, 255, 0.15);
+        border-radius: 24px; padding: 32px 28px;
+    }
+    @media (max-width: 600px) {
+        .author-card { flex-direction: column; text-align: center; }
+    }
+    .author-avatar {
+        width: 80px; height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+        display: flex; align-items: center;
+        justify-content: center;
+        font-size: 40px; flex-shrink: 0;
+    }
+    .author-info { flex: 1; }
+    .author-info .name {
+        font-size: 22px; font-style: italic;
+        margin-bottom: 6px; color: #c9a7ff;
+    }
+    .author-info .bio {
+        font-size: 14px;
+        color: rgba(232, 227, 245, 0.7);
+        line-height: 1.6;
+        font-family: -apple-system, sans-serif;
+    }
+
+    /* ===== THEMES ===== */
+    .themes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 16px; max-width: 700px; margin: 0 auto;
+    }
+    .theme-item {
+        text-align: center; padding: 20px 12px;
+    }
+    .theme-icon {
+        font-size: 32px; margin-bottom: 10px; display: block;
+    }
+    .theme-name {
+        font-size: 12px; letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #c9a7ff;
+        font-family: -apple-system, sans-serif;
+        font-weight: 600;
+    }
+
+    /* ===== CTA FINAL ===== */
+    .cta-final {
+        text-align: center; padding: 90px 24px;
+        background: radial-gradient(circle at 50% 50%,
+            rgba(139, 92, 246, 0.15), transparent 60%);
+        position: relative; z-index: 1;
+    }
+    .cta-final h2 {
+        font-size: clamp(28px, 5vw, 44px);
+        font-weight: 400; font-style: italic;
+        letter-spacing: -1px; margin-bottom: 16px;
+        line-height: 1.1;
+    }
+    .cta-final p {
+        font-size: 16px;
+        color: rgba(232, 227, 245, 0.7);
+        margin-bottom: 32px; max-width: 480px;
+        margin-left: auto; margin-right: auto;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+        padding: 50px 24px 40px;
+        text-align: center; font-size: 13px;
+        color: rgba(232, 227, 245, 0.35);
+        border-top: 1px solid rgba(168, 130, 255, 0.1);
+        font-family: -apple-system, sans-serif;
+        position: relative; z-index: 1;
+    }
+    footer .heart { color: #c9a7ff; }
+    footer a { color: #c9a7ff; text-decoration: none; }
+    footer .footer-links {
+        display: flex; gap: 20px;
+        justify-content: center;
+        margin-bottom: 20px; flex-wrap: wrap;
+    }
+</style>
+</head>
+<body>
+    <div class="moon-glow"></div>
+    <div class="stars-container" id="starsContainer"></div>
+
+    <nav>
+        <div class="nav-logo">Mindy & Nix</div>
+        <div class="nav-links">
+            <a href="#poveste">Poveste</a>
+            <a href="#pdf">PDF</a>
+            <a href="#personaje">Personaje</a>
+            <a href="#autor">Autor</a>
+            <a href="#pdf" class="nav-cta">Citește acum</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <img src="mindy_nix_print.jpg"
+             alt="Mindy & Nix — copertă"
+             class="hero-cover"
+             id="heroCover"
+             onerror="this.classList.add('hidden')">
+        <div class="hero-eyebrow">— O poveste fantasy —</div>
+        <h1>Mindy & Nix</h1>
+        <p class="hero-tagline">
+            O vrăjitoare pe cale de dispariție.<br>
+            O șoricică loială.<br>
+            O insulă uitată de lume.
+        </p>
+        <div class="hero-author">de Catrinel von Caitanovici</div>
+        <div class="btn-row">
+            <a href="#pdf" class="btn btn-primary">📖 Citește PDF-ul gratuit</a>
+            <a href="https://youtube.com/@kapricii" target="_blank" rel="noopener" class="btn btn-youtube">▶️ YouTube @kapricii</a>
+            <a href="https://www.patreon.com/Kapricii" target="_blank" rel="noopener" class="btn btn-patreon">💜 Susține pe Patreon</a>
+        </div>
+    </section>
+
+    <div class="divider">· · ·</div>
+
+    <!-- POVESTE -->
+    <section class="section" id="poveste">
+        <div class="section-tag">Povestea</div>
+        <h2 class="section-title">Ce faci când lumea uită cine ești?</h2>
+        <div class="about-text">
+            <p class="drop-cap">
+                După șase luni petrecute la grădina zoologică, Mindy știe că ceva nu e în regulă.
+                Colegii o suspectează — de ce știe exact ce temperatură au nevoie șerpii?
+                De ce vorbește cu tigrii? De ce șoricicile o ascultă?
+            </p>
+            <p>
+                Așa începe fuga. Cu Nix, o șoricică mică și curajoasă, ascunsă într-o borsetă,
+                spre un aeroport care ar trebui să o ducă departe de tot ce cunoaște.
+            </p>
+            <p>
+                Dar un sunet ciudat oprește lumea în loc. Oamenii uită cine sunt.
+                Avioanele stau pe pistă. Și Mindy ajunge pe o insulă care nu există pe nicio hartă
+                — un loc cu canale secate, corăbii suspendate pe stânci, creaturi blestemate
+                să-și fi uitat forma, și un templu scufundat unde se ascunde un secret mai vechi
+                decât lumea.
+            </p>
+            <p style="font-style: italic; color: #c9a7ff; margin-top: 32px;">
+                O poveste despre memorie, natură, și echilibrul fragil dintre oameni și animale.
+            </p>
+        </div>
+    </section>
+
+    <div class="divider">· · ·</div>
+
+    <!-- PDF DOWNLOAD -->
+    <section class="section" id="pdf">
+        <div class="section-tag">Citește cartea</div>
+        <h2 class="section-title">PDF integral — gratuit</h2>
+        <div class="download-card">
+            <span class="download-icon">📖</span>
+            <h3>Mindy & Nix — carte completă</h3>
+            <p>
+                Descarcă PDF-ul integral și citește povestea completă,
+                oriunde, pe orice dispozitiv. Fără costuri, fără cont.
+            </p>
+            <a href="mindy-nix.pdf" download class="btn btn-primary">
+                ⬇️ Descarcă PDF-ul
+            </a>
+            <div class="file-info">Format PDF · ~40 pagini · Gratuit</div>
+        </div>
+    </section>
+
+    <div class="divider">· · ·</div>
+
+    <!-- PERSONAJE -->
+    <section class="section" id="personaje">
+        <div class="section-tag">Personajele</div>
+        <h2 class="section-title">Cei care traversează întunericul</h2>
+        <div class="characters-grid">
+            <div class="character-card">
+                <span class="character-icon">🐈‍⬛</span>
+                <div class="character-name">Mindy</div>
+                <div class="character-role">Protagonista</div>
+                <div class="character-desc">
+                    O vrăjitoare care poate lua orice formă de animal.
+                    Singura care-și amintește că natura nu e ceva ce stăpânești
+                    — ci ceva ce asculți.
+                </div>
+            </div>
+            <div class="character-card">
+                <span class="character-icon">🐭</span>
+                <div class="character-name">Nix</div>
+                <div class="character-role">Companion</div>
+                <div class="character-desc">
+                    O șoricică născută în grădina zoologică.
+                    Nu a văzut niciodată soarele până nu a fugit cu Mindy.
+                    Curajoasă mai mult decât crede.
+                </div>
+            </div>
+            <div class="character-card">
+                <span class="character-icon">🐱</span>
+                <div class="character-name">Zaraza</div>
+                <div class="character-role">Gazda</div>
+                <div class="character-desc">
+                    Fostă actriță, acum himeră blestemată.
+                    Locuiește în orașul insulei.
+                    Știe mai multe decât spune.
+                </div>
+            </div>
+            <div class="character-card">
+                <span class="character-icon">🐺</span>
+                <div class="character-name">Aseroth</div>
+                <div class="character-role">Ghid</div>
+                <div class="character-desc">
+                    Singurul șacal blestemat al insulei.
+                    A renunțat să mai caute ieșirea
+                    — până când Mindy apare la ușa lui.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider">· · ·</div>
+
+    <!-- FRAGMENT -->
+    <section class="section">
+        <div class="section-tag">Fragment</div>
+        <h2 class="section-title">Din primele pagini</h2>
+        <div class="excerpt-box">
+            <p>
+                Vrăjitoare pe cale de dispariție. Dacă ne ia circul așa vom fi scrise pe afiș.
+                Unde altundeva să ne mai primească după ce am fugit împreună, tu mușcându-i
+                și eu urlând ca lupii? Adevărul e că suntem singure împotriva lumii, dar n-am
+                avut de ales. Nu puteam rămâne acolo.
+            </p>
+            <div class="excerpt-author">— Capitolul 1</div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="#pdf" class="btn btn-primary">📖 Citește tot PDF-ul</a>
+        </div>
+    </section>
+
+    <div class="divider">· · ·</div>
+
+    <!-- LINKS -->
+    <section class="section">
+        <div class="section-tag">Urmărește & Susține</div>
+        <h2 class="section-title">Unde o găsești pe Catrinel</h2>
+        <div class="links-grid">
+            <a href="https://youtube.com/@kapricii" target="_blank" rel="noopener" class="link-card">
+                <span class="icon">▶️</span>
+                <div class="info">
+                    <div class="name">YouTube @kapricii</div>
+                    <div class="desc">Audiobook-uri, povești și conținut fantasy</div>
+                </div>
+                <span class="arrow">→</span>
+            </a>
+            <a href="https://www.patreon.com/Kapricii" target="_blank" rel="noopener" class="link-card">
+                <span class="icon">💜</span>
+                <div class="info">
+                    <div class="name">Patreon Kapricii</div>
+                    <div class="desc">Susține creația și primești conținut exclusiv</div>
+                </div>
+                <span class="arrow">→</span>
+            </a>
+        </div>
+    </section>
+
+    <div class="divider">· · ·</div>
+
+    <!-- AUTOR -->
+    <section class="section" id="autor">
+        <div class="section-tag">Autoarea</div>
+        <h2 class="section-title">Despre Catrinel</h2>
+        <div class="author-card">
+            <div class="author-avatar">✍️</div>
+            <div class="author-info">
+                <div class="name">Catrinel von Caitanovici</div>
+                <div class="bio">
+                    Scriitoare de fantasy și creatoare de conținut.
+                    „Mindy & Nix” este povestea unei vrăjitoare care descoperă
+                    că adevărata magie stă în conexiunea cu natura și cu cei
+                    pe care îi iubești.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider">· · ·</div>
+
+    <!-- TEME -->
+    <section class="section">
+        <div class="section-tag">Teme</div>
+        <h2 class="section-title">Ce vei găsi în poveste</h2>
+        <div class="themes-grid">
+            <div class="theme-item">
+                <span class="theme-icon">🌿</span>
+                <div class="theme-name">Natură</div>
+            </div>
+            <div class="theme-item">
+                <span class="theme-icon">🧠</span>
+                <div class="theme-name">Memorie</div>
+            </div>
+            <div class="theme-item">
+                <span class="theme-icon">🤝</span>
+                <div class="theme-name">Prietenie</div>
+            </div>
+            <div class="theme-item">
+                <span class="theme-icon">🌊</span>
+                <div class="theme-name">Magie</div>
+            </div>
+            <div class="theme-item">
+                <span class="theme-icon">🎭</span>
+                <div class="theme-name">Identitate</div>
+            </div>
+            <div class="theme-item">
+                <span class="theme-icon">🔮</span>
+                <div class="theme-name">Mister</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider">· · ·</div>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+        <h2>Ești gata să traversezi insula?</h2>
+        <p>
+            Descarcă PDF-ul integral, abonează-te pe YouTube
+            și susține povestea pe Patreon.
+        </p>
+        <div class="btn-row" style="justify-content: center;">
+            <a href="#pdf" class="btn btn-primary">📖 PDF gratuit</a>
+            <a href="https://youtube.com/@kapricii" target="_blank" rel="noopener" class="btn btn-youtube">▶️ YouTube</a>
+            <a href="https://www.patreon.com/Kapricii" target="_blank" rel="noopener" class="btn btn-patreon">💜 Patreon</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-links">
+            <a href="https://youtube.com/@kapricii" target="_blank" rel="noopener">▶️ YouTube @kapricii</a>
+            <a href="https://www.patreon.com/Kapricii" target="_blank" rel="noopener">💜 Patreon Kapricii</a>
+            <a href="#pdf">📖 PDF gratuit</a>
+        </div>
+        Mindy & Nix © 2026 Catrinel von Caitanovici · Toate drepturile rezervate<br>
+        <span style="opacity: 0.5; font-size: 11px;">
+            Site realizat de
+            <a href="https://fcraciunoiu-create.github.io/Portofoliu/">Florin Craciunoiu</a>
+        </span>
+    </footer>
+
+    <script>
+        // ===== GENERARE STELE =====
+        (function generateStars() {
+            const container = document.getElementById('starsContainer');
+            if (!container) return;
+            const count = 80;
+            const fragment = document.createDocumentFragment();
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = (Math.random() * 1.5 + 1).toFixed(1);
+                star.style.left = (Math.random() * 100).toFixed(2) + '%';
+                star.style.top = (Math.random() * 100).toFixed(2) + '%';
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.animationDelay = (Math.random() * 3).toFixed(2) + 's';
+                star.style.opacity = (Math.random() * 0.5 + 0.2).toFixed(2);
+                fragment.appendChild(star);
+            }
+            container.appendChild(fragment);
+        })();
+    </script>
+</body>
+</html>
