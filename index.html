@@ -47,7 +47,7 @@
     .hero-art-item.bg-white { background: #fff; padding: 6px; }
     @media (max-width: 600px) { .hero-art-item { height: 100px; } .hero-art-row { gap: 10px; } }
 
-    /* DOWNLOAD INDICATOR — indicator vizual ⬇️ la hover */
+    /* DOWNLOAD INDICATOR */
     .hero-cover-wrap a { display: block; cursor: pointer; position: relative; }
     .hero-cover-wrap a::after { content: '⬇️'; position: absolute; bottom: 16px; right: 16px; background: rgba(139, 92, 246, 0.95); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4); }
     .hero-cover-wrap a:hover::after { opacity: 1; }
@@ -87,9 +87,6 @@
     .gallery-item { border-radius: 16px; overflow: hidden; border: 1px solid rgba(168, 130, 255, 0.2); box-shadow: 0 10px 30px rgba(139, 92, 246, 0.15); transition: transform 0.3s ease, box-shadow 0.3s ease; background: #fff; padding: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
     .gallery-item:hover { transform: scale(1.03); box-shadow: 0 15px 40px rgba(139, 92, 246, 0.35); }
     .gallery-item img { width: 100%; height: auto; display: block; border-radius: 8px; }
-    .gallery-item.bookmark { grid-column: 1 / -1; background: linear-gradient(160deg, rgba(168, 130, 255, 0.08), rgba(139, 92, 246, 0.03)); padding: 20px; max-width: 600px; margin: 0 auto; width: 100%; }
-    .gallery-item.bookmark img { max-height: 700px; width: auto; margin: 0 auto; border-radius: 12px; box-shadow: 0 20px 60px rgba(139, 92, 246, 0.4); }
-    @media (max-width: 600px) { .gallery-item.bookmark img { max-height: 500px; } }
 
     /* PDF */
     .download-card { background: linear-gradient(160deg, rgba(168, 130, 255, 0.12), rgba(139, 92, 246, 0.05)); border: 1px solid rgba(168, 130, 255, 0.3); border-radius: 24px; padding: 40px 32px; text-align: center; max-width: 600px; margin: 0 auto; box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2); }
@@ -244,13 +241,13 @@
         Desene realizate manual de autoare, Catrinel D. von Caitanovici
     </p>
     <div class="gallery-grid">
-        <div class="gallery-item bookmark"><img src="semn-carte.jpg" alt="Semn de carte Mindy & Nix — calligraphy" loading="lazy"></div>
         <div class="gallery-item"><img src="art-calligraphy.png" alt="Mindy & Nix — calligraphy" loading="lazy"></div>
-        <div class="gallery-item"><img src="ilustratie-mindy.jpg" alt="Mindy cu borseta" loading="lazy"></div>
         <div class="gallery-item"><img src="ilustratie-nix.jpg" alt="Nix — șoricica" loading="lazy"></div>
+        <div class="gallery-item"><img src="ilustratie-trei.jpg" alt="Mindy & Nix — ilustrație" loading="lazy"></div>
         <div class="gallery-item"><img src="ilustratie-soareci.jpg" alt="Mindy și Nix în formă de șoareci" loading="lazy"></div>
         <div class="gallery-item"><img src="ilustratie-cuib.jpg" alt="Doi șoareci cuibăriți" loading="lazy"></div>
         <div class="gallery-item"><img src="ilustratie-pod.jpg" alt="Pe pod, sub lună" loading="lazy"></div>
+        <div class="gallery-item"><img src="ilustratie-franghie.jpg" alt="Frânghie / șarpe pe fundal negru" loading="lazy"></div>
         <div class="gallery-item"><img src="ilustratie-grup.jpg" alt="Grup de șoareci" loading="lazy"></div>
         <div class="gallery-item"><img src="ilustratie-multimi.jpg" alt="Mai mulți șoareci" loading="lazy"></div>
         <div class="gallery-item"><img src="ilustratie-carte.jpg" alt="Cartea magică cu urme de labe" loading="lazy"></div>
