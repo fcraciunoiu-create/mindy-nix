@@ -108,6 +108,65 @@
         .hero-art-row { gap: 10px; }
     }
 
+    /* Modificarea 2: imagini descărcabile la click (coperta + cele 4 materiale din hero) */
+    .hero-cover-wrap a {
+        display: block;
+        cursor: pointer;
+        position: relative;
+    }
+    .hero-cover-wrap a::after {
+        content: '⬇️';
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+        background: rgba(139, 92, 246, 0.9);
+        color: #fff;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+    .hero-cover-wrap a:hover::after {
+        opacity: 1;
+    }
+
+    .hero-art-item {
+        position: relative;
+        display: block;
+        text-decoration: none;
+        color: inherit;
+    }
+    .hero-art-item::after {
+        content: '⬇️';
+        position: absolute;
+        bottom: 6px;
+        right: 6px;
+        background: rgba(139, 92, 246, 0.9);
+        color: #fff;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+    .hero-art-item:hover::after {
+        opacity: 1;
+    }
+    .hero-art-item.bg-white::after {
+        background: rgba(139, 92, 246, 0.9);
+    }
+
     .hero-eyebrow { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #c9a7ff; margin-bottom: 16px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 600; }
     .hero h1 { font-size: clamp(44px, 10vw, 88px); font-weight: 400; font-style: italic; letter-spacing: -2px; line-height: 0.95; margin-bottom: 20px; background: linear-gradient(135deg, #e8e3f5 30%, #c9a7ff 70%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
     .hero-tagline { font-size: clamp(15px, 2.5vw, 19px); color: rgba(232, 227, 245, 0.7); max-width: 560px; margin-bottom: 24px; font-style: italic; line-height: 1.5; }
@@ -320,23 +379,25 @@
 <section class="hero">
     <div class="hero-cover-wrap">
         <!-- FIX: cover.jpg nu exista -> cover.png (calea corectă) + fetchpriority pentru LCP -->
-        <img src="cover.png" alt="Coperta cărții Mindy & Nix — ilustrație de Catrinel D. von Caitanovici" class="hero-cover" id="heroCover" fetchpriority="high" decoding="async">
+        <a href="cover.png" download="mindy-nix-cover.png" title="Click pentru a descărca">
+            <img src="cover.png" alt="Coperta cărții Mindy & Nix — ilustrație de Catrinel D. von Caitanovici" class="hero-cover" id="heroCover" fetchpriority="high" decoding="async">
+        </a>
     </div>
 
     <!-- ART ROW - cele 4 materiale sub copertă -->
     <div class="hero-art-row">
-        <div class="hero-art-item bg-white">
+        <a href="art-nix.png" download="art-nix.png" class="hero-art-item bg-white" title="Click pentru a descărca">
             <img src="art-nix.png" alt="Nix — silueta șoricică" loading="lazy">
-        </div>
-        <div class="hero-art-item">
+        </a>
+        <a href="art-sunset.png" download="art-sunset.png" class="hero-art-item" title="Click pentru a descărca">
             <img src="art-sunset.png" alt="Ilustrație Mindy & Nix — apus portocaliu" loading="lazy">
-        </div>
-        <div class="hero-art-item">
+        </a>
+        <a href="art-moon.png" download="art-moon.png" class="hero-art-item" title="Click pentru a descărca">
             <img src="art-moon.png" alt="Ilustrație Mindy & Nix — lună violet" loading="lazy">
-        </div>
-        <div class="hero-art-item">
-            <img src="art-calligraphy.png" alt="Mindy & Nix — calligraphy" loading="lazy">
-        </div>
+        </a>
+        <a href="semn-carte.png" download="semn-carte.png" class="hero-art-item" title="Click pentru a descărca">
+            <img src="semn-carte.png" alt="Semn de carte Mindy & Nix" loading="lazy">
+        </a>
     </div>
 
     <div class="hero-eyebrow">— O poveste fantasy —</div>
