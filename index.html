@@ -142,6 +142,26 @@
     .gallery-item:hover { transform: scale(1.03); box-shadow: 0 15px 40px rgba(139, 92, 246, 0.35); }
     .gallery-item img { width: 100%; height: auto; display: block; border-radius: 8px; }
 
+    /* Modificarea 1: semn de carte — element wide, ocupă toată lățimea galeriei */
+    .gallery-item.bookmark {
+        grid-column: 1 / -1;
+        background: linear-gradient(160deg, rgba(168, 130, 255, 0.08), rgba(139, 92, 246, 0.03));
+        padding: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+        width: 100%;
+    }
+    .gallery-item.bookmark img {
+        max-height: 700px;
+        width: auto;
+        margin: 0 auto;
+        border-radius: 12px;
+        box-shadow: 0 20px 60px rgba(139, 92, 246, 0.4);
+    }
+    @media (max-width: 600px) {
+        .gallery-item.bookmark img { max-height: 500px; }
+    }
+
     /* PDF */
     .download-card { background: linear-gradient(160deg, rgba(168, 130, 255, 0.12), rgba(139, 92, 246, 0.05)); border: 1px solid rgba(168, 130, 255, 0.3); border-radius: 24px; padding: 40px 32px; text-align: center; max-width: 600px; margin: 0 auto; box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2); }
     .download-icon { font-size: 56px; margin-bottom: 16px; }
@@ -195,6 +215,17 @@
     .cta-final { position: relative; z-index: 1; text-align: center; padding: 90px 24px; background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.15), transparent 60%); }
     .cta-final h2 { font-size: clamp(28px, 5vw, 44px); font-weight: 400; font-style: italic; letter-spacing: -1px; margin-bottom: 16px; line-height: 1.1; }
     .cta-final p { font-size: 16px; color: rgba(232, 227, 245, 0.7); margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+    /* Modificarea 2: centrează butoanele din CTA final */
+    .cta-final .btn-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
 
     /* FOOTER */
     footer { position: relative; z-index: 1; padding: 50px 24px 40px; text-align: center; font-size: 13px; color: rgba(232, 227, 245, 0.35); border-top: 1px solid rgba(168, 130, 255, 0.1); font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
@@ -358,6 +389,8 @@
         Desene realizate manual de autoare, Catrinel D. von Caitanovici
     </p>
     <div class="gallery-grid">
+        <!-- Modificarea 1: semn de carte — primul element, afișat la lățime maximă -->
+        <div class="gallery-item bookmark"><img src="semn-carte.png" alt="Semn de carte Mindy & Nix — calligraphy" loading="lazy"></div>
         <!-- FIX: ilustratie-mindy.jpg nu exista -> înlocuită cu ilustrațiile disponibile (franghie, trei).
              Galeria folosește acum <button> pentru accesibilitate din tastatură (lightbox). -->
         <button type="button" class="gallery-item" aria-label="Mărește ilustrația: Nix — șoricica"><img src="ilustratie-nix.jpg" alt="Nix — șoricica" loading="lazy" decoding="async"></button>
